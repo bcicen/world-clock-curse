@@ -3,7 +3,7 @@ import time
 import curses
 import curses.panel
 import traceback
-from worldclock import WorldClock
+from worldclock.model import WorldClock
 
 def main(stdscr):
   wc = WorldClock()
@@ -36,11 +36,9 @@ def main(stdscr):
 def updateMap(mapWin, wc):
     mapWin.clear()
     #screen.box()
-    
 
     for y in range(19):
       mapWin.addstr(y, 0, wc.worldmap[y], curses.A_DIM)
-
 
     mapWin.addstr(1, 41, 'Copenhagen', curses.A_BOLD) 
     mapWin.addstr(2, 41, wc.getCopenhagenTime(), curses.A_BOLD) 
@@ -62,8 +60,6 @@ def updateMap(mapWin, wc):
    
     
     #screen.refresh()
-  
-    
 
 def centerTextHorizontal(screen, text):
     # Get window diminsions
@@ -71,7 +67,7 @@ def centerTextHorizontal(screen, text):
     return int((x/2)-(len(text))/2)
 
 
-if __name__ == '__main__':
+def run():
   try:
     # Initialize curses
     stdscr=curses.initscr()
@@ -108,3 +104,6 @@ if __name__ == '__main__':
     curses.echo()
     curses.nocbreak()
     curses.endwin()
+
+if __name__ == '__main__':
+    run()
